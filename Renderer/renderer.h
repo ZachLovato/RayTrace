@@ -3,6 +3,7 @@
 #include "../Math//Ray.h"
 #include "Canvas.h"
 #include "../Objects/Object.h"
+#include "Camera.h"
 #include <SDL.h>
 
 class Object;
@@ -18,7 +19,7 @@ public:
 	bool CreateWindow(int width, int height);
 
 
-	void Render(Canvas& canvas, Scene& scene);
+	void Render(Canvas& canvas, Scene& scene, Camera& camera);
 	void CopyCanvas(const Canvas& canvas);
 	void Present();
 

@@ -42,7 +42,7 @@ bool Renderer::CreateWindow(int width, int height)
     return true;
 }
 
-void Renderer::Render(Canvas& canvas, Scene& scene)
+void Renderer::Render(Canvas& canvas, Scene& scene, Camera& camera)
 {
     // camera / viewport 
     glm::vec3 lowerLeft{ -2, -1, -1 };
@@ -54,17 +54,18 @@ void Renderer::Render(Canvas& canvas, Scene& scene)
     {
         for (int x = 0; x < canvas.GetWidth(); x++)
         {
-            // get normalized (0 - 1) u, v coordinates for x and y 
-            float u = x / (float)canvas.GetWidth();
-            float v = 1 - (y / (float)canvas.GetHeight());
+            // get normalized (0 - 1) u, v coordinates from screnn x and y 
 
-            // create ray 
-            glm::vec3 direction = lowerLeft + (u * right) + (v * up);
-            Ray ray{ eye, direction };
+            glm::vec2 point = glm::vec2{ x, y } / glm::vec2{ canvas.m_width, canvas.m_height };
+            // flip y 
+            point.y = 1.0f - point.y;
 
+            // create ray from camera 
+            Ray ray = camera.PointToRay(point);
+
+            // cast ray into scene, get color 
             RaycastHit raycastHit;
-            color3 color = scene.Trace(ray, 0.01f, 1000.0f, raycastHit, 5);
-           
+            color3 color = scene.Trace(ray, 0.001f, 1000.0f, raycastHit, 5);
             canvas.DrawPoint({ x, y }, color4(color, 1));
 
             // get gradient background color from ray 
