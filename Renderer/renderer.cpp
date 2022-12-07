@@ -76,7 +76,7 @@ void Renderer::Render(Canvas& canvas, Scene& scene, Camera& camera, int samples)
             }
             //<average the color>
             color = color / color3(samples);
-                canvas.DrawPoint({ x, y }, color4(color, 1));
+            canvas.DrawPoint({ x, y }, color4(color, 1));
 
         }
     }
