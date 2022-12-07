@@ -10,7 +10,7 @@ int main(int, char**)
     rend.CreateWindow(600, 300);
 
     Canvas canvas(600, 300, rend);
-    Camera camera({ 0, 1, 2 }, { 0, 0, 0 }, { 0, 1, 0 }, 25.0f, 600 / (float)300);
+    Camera camera({ 0, 1, 2 }, { 0, 0, 0 }, { 0, 1, 0 }, 85.0f, 600 / (float)300);
     Scene scene;
 
     //scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 0, 0, -1 }, 100.0f, std::make_unique<Lambertian>(color3( 0.2f, 0.2f, 0.2f))));
@@ -51,7 +51,7 @@ int main(int, char**)
         //}
 
 
-        rend.Render(canvas, scene, camera);
+        rend.Render(canvas, scene, camera, 100);
         canvas.Update();
 
         rend.CopyCanvas(canvas);
