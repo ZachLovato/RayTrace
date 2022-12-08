@@ -44,12 +44,6 @@ bool Renderer::CreateWindow(int width, int height)
 
 void Renderer::Render(Canvas& canvas, Scene& scene, Camera& camera, int samples)
 {
-    // camera / viewport 
-    glm::vec3 lowerLeft{ -2, -1, -1 };
-    glm::vec3 eye{ 0, 0, 0 };
-    glm::vec3 right{ 4, 0, 0 };
-    glm::vec3 up{ 0, 2, 0 };
-
     for (int y = 0; y < canvas.GetHeight(); y++)
     {
         for (int x = 0; x < canvas.GetWidth(); x++)
@@ -70,11 +64,8 @@ void Renderer::Render(Canvas& canvas, Scene& scene, Camera& camera, int samples)
 
                 // cast ray into scene 
                 RaycastHit raycastHit;
-                // add trace color value to color 
-                //<add trace color to color>  
                 color += scene.Trace(ray, 0.001f, 1000.0f, raycastHit, 5);
             }
-            //<average the color>
             color = color / color3(samples);
             canvas.DrawPoint({ x, y }, color4(color, 1));
 

@@ -22,7 +22,6 @@ bool Plane::Hit(const Ray& ray, float min, float max, RaycastHit& hit)
         hit.distance = t;
         hit.point = ray.GetPoint(t);
         hit.normal = m_normal;
-
         hit.material = m_material.get();
 
         return true;
