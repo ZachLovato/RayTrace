@@ -15,7 +15,7 @@ bool Sphere::Hit(const Ray& ray, float min, float max, RaycastHit& hit)
 
     if (discriminant >= 0)
     {
-        float t = (-b - sqrt(discriminant)) / 2 * a;
+        float t = (-b - sqrt(discriminant)) / (2 * a);
 
         if (t > min && t < max)
         {
@@ -23,12 +23,12 @@ bool Sphere::Hit(const Ray& ray, float min, float max, RaycastHit& hit)
             hit.point = ray.GetPoint(t);
             hit.normal = (hit.point - m_center) / m_radius;
 
-            hit.material = m_material.get();
+            hit.material = std::move(m_material).get();
             
             return true;
         }
 
-        float t2 = (-b + sqrt(discriminant)) / 2 * a;
+        float t2 = (-b + sqrt(discriminant)) / (2 * a);
 
         if (t2 > min && t2 < max)
         {
@@ -36,7 +36,7 @@ bool Sphere::Hit(const Ray& ray, float min, float max, RaycastHit& hit)
             hit.point = ray.GetPoint(t2);
             hit.normal = (hit.point - m_center) / m_radius;
 
-            hit.material = m_material.get();
+            hit.material = std::move(m_material).get();
 
             return true;
         }

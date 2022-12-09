@@ -8,13 +8,13 @@
 void initScene01(Scene& scene)
 {
     //  -- light
-    scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 1.3, 0.5f, -3 }, 0.4f, std::make_unique<Emmissive>(color3{ 40, 40, 40 })));
+    //scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 1.3, 0.5f, -3 }, 0.4f, std::make_unique<Emmissive>(color3{ 40, 40, 40 })));
 
     // -- Circles
-    scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 0, 1, -1 }, 0.5f, std::make_unique<Lambertian>(color3{ .4f, .4f, .9f })));
-    scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 1.3, 1, -1 }, 0.5f, std::make_unique<Dielectric>(color3{ 1, 1, 1 }, 2.64f)));
-    scene.AddObject(std::make_unique<Sphere>(glm::vec3{ -1.3, 1, -1 }, 0.8f, std::make_unique<Metal>(color3{ 1, 1, 1 }, 0.3f)));
-    scene.AddObject(std::make_unique<Plane>(glm::vec3{ 0, 0, -8 }, glm::vec3{ 0, 1, 0 }, std::make_unique<Lambertian>(color3{ 0.7f, 0.7f, 0.7f })));
+    //scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 0, 1, -1 }, 0.5f, std::make_unique<Lambertian>(color3{ .4f, .4f, .9f })));
+    //scene.AddObject(std::make_unique<Sphere>(glm::vec3{ 1.3, 1, -1 }, 0.5f, std::make_unique<Dielectric>(color3{ 1, 1, 1 }, 2.64f)));
+    scene.AddObject(std::make_unique<Sphere>(glm::vec3{ -1.3, 1, -1 }, 0.8f, std::make_unique<Metal>(color3{ 1, 1, 1 }, 0)));
+    scene.AddObject(std::make_unique<Plane>(glm::vec3{ 0, 0, -8 }, glm::vec3{ 0, 1, 0 }, std::make_unique<Metal>(color3{ 0.7f, 0.7f, 0.7f })));
 }
 
 void initScene02(Scene& scene);
@@ -25,7 +25,7 @@ int main(int, char**)
 {
     const int width = 600;
     const int height = 300;
-    const int samples = 10;
+    const int samples = 50;
     const float fov = 30.0f;
 
     Renderer rend;

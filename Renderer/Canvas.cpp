@@ -35,6 +35,6 @@ void Canvas::Clear(const color4& color)
 
 void Canvas::DrawPoint(const glm::ivec2& point, const color4& color)
 {
-	if (point.x < 0 || point.x >= m_width || point.y < 0 || point.y >= m_height) return;
+	//if (point.x < 0 || point.x >= m_width || point.y < 0 || point.y >= m_height) return;
 	m_buffer[point.x + (point.y * m_width)] = ColorToRGBA(color);
 }
